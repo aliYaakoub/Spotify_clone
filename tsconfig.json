@@ -20,7 +20,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/Config/Context.tsx",
-    "src/Config/useAuth.js"
+    "src/Config/useAuth.tsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -10,6 +10,68 @@
   background-size: cover;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: "Fredoka", sans-serif, Arial, Helvetica, sans-serif;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #ffffff30;
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ffffff50;
+}
+
+.custom-scrollbar {
+  margin-right: 2px;
+}
+
+.playlist-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.playlist-scroll::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+/* Handle */
+.playlist-scroll::-webkit-scrollbar-thumb {
+  background: #ffffff50;
+}
+
+/* Handle on hover */
+.playlist-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ffffff80;
+}
+
+.line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  white-space: nowrap;
+}
+
+/* .table-head {
+  display: grid;
+  grid-template-columns: [index] 16px [first] 4fr [last] minmax(120px, 1fr);
+  vertical-align: baseline;
+} */
+
+/* [first] 4fr [var1] 2fr [last] minmax(120px,1fr) */

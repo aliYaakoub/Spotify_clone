@@ -10,4 +10,15 @@ module.exports = {
 
     return config;
   },
+  images: {
+    domains: [
+      'mosaic.scdn.co', 
+      'i.scdn.co', 
+      'daily-mix.scdn.co', 
+      'lineup-images.scdn.co', 
+      'seeded-session-images.scdn.co',
+      'thisis-images.scdn.co',
+      't.scdn.co'
+    ]
+  }
 }
