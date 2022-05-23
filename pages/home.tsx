@@ -17,6 +17,7 @@ import FeaturedPlaylistCard from '../src/Components/cards/FeaturedPlaylistCard';
 import AlbumCard from '../src/Components/cards/AlbumCard';
 import PlaylistCard from '../src/Components/cards/PlaylistCard';
 import UserAlbumCard from '../src/Components/cards/UserAlbumCard';
+import ArtistCard from './../src/Components/cards/ArtistCard';
 
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.CLIENT_ID,
@@ -38,10 +39,8 @@ const Home: React.FC = () => {
     setUserAlbums,
     setUserTopArtists,
     userTopArtists,
-    userShows,
     setUserShows,
     setFollowedArtists,
-    followedArtists
   } = useAppContext() as ContextInterface;
 
   const [loading, setLoading] = useState(false);
@@ -244,7 +243,20 @@ const Home: React.FC = () => {
       })
 
     setLoading(false);
-  }, [accessToken, setPlaylists, playlists, setFeaturedPlaylists, featuredPlaylists, newReleasedAlbums, setNewReleasedAlbums, setUserAlbums, userAlbums]);
+  }, [
+    accessToken, 
+    setPlaylists, 
+    playlists, 
+    setFeaturedPlaylists, 
+    featuredPlaylists, 
+    newReleasedAlbums, 
+    setNewReleasedAlbums, 
+    setUserAlbums, 
+    userAlbums, 
+    setFollowedArtists, 
+    setUserShows, 
+    setUserTopArtists
+  ]);
   
   return (
     <div className='w-screen h-[calc(100vh-6rem)] flex text-white'>
@@ -259,9 +271,6 @@ const Home: React.FC = () => {
             <button onClick={router.back} className='rounded-full w-8 h-8 bg-black flex items-center justify-center'>
               <BackButton />
             </button>
-            {/* <button className='rounded-full w-8 h-8 bg-black flex items-center justify-center'>
-              <NextButton />
-            </button> */}
           </div>
         </div>
         {!loading ? 
@@ -273,7 +282,7 @@ const Home: React.FC = () => {
                 <PlaylistPreview key={playlist.id} data={playlist} />
               ))}
             </div>
-            {featuredPlaylists &&
+            {featuredPlaylists && featuredPlaylists.playlists.length > 0 &&
               <>
                 <div className='flex items-center justify-between pt-14 pb-4'>
                   <h2 className='text-2xl font-bold'>{featuredPlaylists.message}</h2>
@@ -286,7 +295,7 @@ const Home: React.FC = () => {
                 </div>
               </>
             }
-            {newReleasedAlbums &&
+            {newReleasedAlbums && newReleasedAlbums.length > 0 &&
               <>
                 <div className='flex items-center justify-between pt-14 pb-4'>
                   <h2 className='text-2xl font-bold'>New Released</h2>
@@ -299,7 +308,7 @@ const Home: React.FC = () => {
                 </div>
               </>
             }
-            {playlists &&
+            {playlists && playlists.length > 0 &&
               <>
                 <div className='flex items-center justify-between pt-14 pb-4'>
                   <h2 className='text-2xl font-bold'>Your Playlists</h2>
@@ -312,7 +321,7 @@ const Home: React.FC = () => {
                 </div>
               </>
             }
-            {userAlbums &&
+            {userAlbums && userAlbums.length > 0 &&
               <>
                 <div className='flex items-center justify-between pt-14 pb-4'>
                   <h2 className='text-2xl font-bold'>Albums You Follow</h2>
@@ -321,6 +330,19 @@ const Home: React.FC = () => {
                 <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
                   {userAlbums.slice(0, 4).map(album => (
                     <UserAlbumCard key={album.id} album={album} />
+                  ))}
+                </div>
+              </>
+            }
+            {userTopArtists && userTopArtists.length > 0 &&
+              <>
+                <div className='flex items-center justify-between pt-14 pb-4'>
+                  <h2 className='text-2xl font-bold'>Your Top Artists</h2>
+                  <Link href={`/user/top-artists`} passHref><a className='text-[#b3b3b3] text-xs font-bold'>SEE ALL</a></Link>
+                </div>
+                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+                  {userTopArtists.slice(0, 4).map(artist => (
+                    <ArtistCard key={artist.id} artist={artist} />
                   ))}
                 </div>
               </>

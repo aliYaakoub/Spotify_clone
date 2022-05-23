@@ -13,7 +13,7 @@ const PlaylistPreview: React.FC<Playlist> = ({ data }) => {
 
   return (
     <Link href={`/playlist/${data.id}`} passHref>
-      <a className='bg-[#ffffff10] flex items-center justify-start shadow-lg overflow-hidden rounded-[4px]'>
+      <a className='bg-[#ffffff10] hover:bg-[#ffffff20] transition-colors duration-300 flex items-center justify-start shadow-lg overflow-hidden rounded-[4px]'>
         {data.images && data.images.length > 0 ? 
           <Image width={80} height={80} src={data.images[0].url} alt='playlist cover' />
           :
